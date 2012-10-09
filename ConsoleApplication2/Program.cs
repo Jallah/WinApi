@@ -13,7 +13,7 @@ namespace ConsoleApplication2
 
         // Die Common Language Runtime steuert das physische Layout der Datenfelder einer Klasse oder Struktur im verwalteten
         // Speicher.Wenn Sie jedoch den Typ an nicht verwalteten Code übergeben möchten, verwenden Sie können StructLayoutAttribute-Attribut, um den nicht verwalteten Layouts des Typs zu steuern. ...
-        // [StructLayout(LayoutKind.Sequential)] // siehe http://msdn.microsoft.com/de-de/library/system.runtime.interopservices.structlayoutattribute.aspx
+        [StructLayout(LayoutKind.Sequential)] // siehe http://msdn.microsoft.com/de-de/library/system.runtime.interopservices.structlayoutattribute.aspx
         public struct POINT
         {
             public int X;
@@ -75,7 +75,10 @@ namespace ConsoleApplication2
            // hdc = GetDC(z);
             int r = 0;
             //hdc = GetDC(z);
-
+            // man sollte hier noch mit try catch finally arbeiten, da man sich wenn bei GetCursorPos was schief geht .. n Loch in den Speicher schießt,
+            // da mir der handler verloren geht. Oder man baut einen Wrapper um den hdc und implementiert IDisposable, mit dem man dem Garbagecollector
+            // noch zusätzlich sagt was er zu tun hat. Die GarbageCollection kommt nich ohne hilfe an den device context ohne den handler, da der DC
+            // sich in unverwaltetem Code befindet. abhilfe ---> IDisposable
             while (true)
             {
                 hdc = GetDC(z);
