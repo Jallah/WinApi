@@ -72,7 +72,7 @@ namespace ConsoleApplication2
             uint pixel;
             IntPtr hdc;
             IntPtr z = new IntPtr(0);
-            hdc = GetDC(z);
+           // hdc = GetDC(z);
             int r = 0;
             //hdc = GetDC(z);
 
@@ -91,8 +91,8 @@ namespace ConsoleApplication2
 
                 Console.WriteLine("x: {0} - y: {1}", p.X, p.Y);
                 Console.WriteLine("color: 0x{0}", pixel.ToString("X"));
-                Thread.Sleep(30);
-                Console.Clear();
+                Thread.Sleep(35);
+                //Console.Clear();
 
             }
         }
